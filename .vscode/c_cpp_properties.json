@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "name": "Mac",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/opt/homebrew/include"
+            ],
+            "defines": [],
+            "macFrameworkPath": [
+                "/Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/System/Library/Frameworks"
+            ],
+            "compilerPath": "/opt/homebrew/opt/llvm/bin/clang",
+            "intelliSenseMode": "macos-clang-arm64",
+            "compilerArgs": [
+                "-lglfw -lGLEW -lGL -lGLU -lglut -lX11 -framework OpenGL"
+            ]
+        }
+    ],
+    "version": 4
+}
