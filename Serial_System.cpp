@@ -49,8 +49,6 @@ SerialSystem::SerialSystem(unsigned numParticles, glm::vec3 bounds_max, std::str
 
 SerialSystem::~SerialSystem() {for (auto i : particles) delete (i);}
 
-float *SerialSystem::getParticlePos() { return &particlePos[0].x; }
-
 // the Poly6 kernel, used for smoothing and density calculation
 double SerialSystem::poly6(glm::vec3 r) {
     double norm_coeff = (h * h - glm::dot(r, r));
@@ -169,7 +167,7 @@ void SerialSystem::get_lambda() {
 
 // Compute the position correction for a particle based on its neighbors and the pressure forces.
 glm::vec3 SerialSystem::get_delta_pos(Particle *i) {
-  double w_dq = poly6(delta_q * glm::vec3(1.0f));
+  double w_dq = poly6(delta_q * glm::vec3(1.0f)); //reference value at distance = delta_q
   glm::vec3 delta_pos(0.0f);
   for (auto j : i->neighbors) {
     double kernel_ratio = poly6(i->next_position - j->next_position) / w_dq;

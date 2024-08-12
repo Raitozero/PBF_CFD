@@ -1,12 +1,8 @@
 #define GLM_ENABLE_EXPERIMENTAL
 
 #include <glm/ext.hpp>
-#include <glm/glm.hpp>
-#include <glm/gtc/constants.hpp>
 #include <glm/gtx/norm.hpp>
-#include <iostream>
 #include <unordered_map>
-#include <vector>
 #include "Particle.h"
 #include "System.h"
 
@@ -28,7 +24,7 @@ typedef std::unordered_multimap<std::tuple<size_t, size_t, size_t>, Particle *,d
 class SerialSystem : public System {
  public:
   SerialSystem(unsigned numParticles, glm::vec3 bounds_max, std::string config);
-  float *getParticlePos(); //return the pointer to particlePos[0].x
+  float *getParticlePos() { return &particlePos[0].x;} ;//return the pointer to particlePos[0].x
   unsigned getParticleNum() { return numParticles; };
   void step();
   virtual ~SerialSystem();

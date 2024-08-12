@@ -4,14 +4,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/constants.hpp>
 #include <iostream>
-#include <vector>
 #include "Particle.h"
-
-//#define CUDA_ENABLE
-#ifdef CUDA_ENABLE
-#include <cuda_gl_interop.h>
-#include <cuda_runtime.h>
-#endif
 
 class System {
 public:
@@ -20,8 +13,7 @@ public:
     virtual void step() = 0;
 
 protected:
-    System(unsigned numParticles, glm::vec3 bounds_max)
-        : numParticles(numParticles), bounds_max(bounds_max) {}
+    System(unsigned numParticles, glm::vec3 bounds_max): numParticles(numParticles), bounds_max(bounds_max) {}
     const unsigned numParticles;
     const size_t maxNeighbors = 50;
     const glm::vec3 gravity = glm::vec3(0.0, -9.8, 0.0);
@@ -32,7 +24,7 @@ protected:
     const double h = 1.5; //smoothing length
     const double rest_density = 2000;
     const double epsilon = 0.01; // Small value to avoid division by zero
-    const double k = 0.01; // Constant for constraint calculation
+    const double k = 0.01; // Constant for delta_pos correction
     const double delta_q = 0.2 * h; // Distance for calculating pressure correction
     const double dist_from_bound = 0.0001; // Distance from the boundary to check for collisions
     const double viscosity_const = 0.1;
